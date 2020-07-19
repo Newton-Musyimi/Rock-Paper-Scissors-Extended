@@ -7,6 +7,14 @@
 //Declarations - moved to header file
 
 //The game loop
+rpsls::rpsls(){
+  game_plays = 0;
+  player_wins = 0;
+  pc_wins = 0;
+}
+rpsls::~rpsls(){
+	std::cout <<"Closing Game. BYE!";
+}
 void rpsls::game_loop(){    
   bool game = true;
   while(game){
@@ -19,20 +27,21 @@ void rpsls::game_loop(){
     }
     int computer = rand() % 5 + 1;
     int user = 0;
-    std::cout << "=================================\n
-                  rock paper scissors lizard spock!\n
-                  =================================\n";
+    std::cout << "=================================\n"
+	          << "rock paper scissors lizard spock!\n"
+			  << "=================================\n";
 
-    std::cout << "When you get the 'GO' pick one of the options below:\n
-                  1) ROCK\n
-                  2) PAPER\n
-                  3) SCISSORS\n
-                  4) LIZARD\n
-                  5) SPOCK\n";
+    std::cout << "When you get the 'GO' pick one of the options below:\n"
+	<< "1) ROCK\n"
+	<< "2) PAPER\n"
+	<< "3) SCISSORS\n"
+	<< "4) LIZARD\n"
+	<< "5) SPOCK\n";
   
-    std::cout << "Rock, Paper, Scissors, Lizard, Spock, GO!\n
-                  Enter number: ";
+    std::cout << "Rock, Paper, Scissors, Lizard, Spock, GO!\n"
+	             "Enter number: ";
     std::cin>> user;
+    std::cout << "\n=================================\n"
     switch(user){
       case 1:
         rock(computer);
@@ -60,24 +69,24 @@ void rpsls::game_loop(){
 }
 
 void rpsls::game_instructions(){
-  std::cout<< "\tROCK PAPER SCISSORS LIZARD SPOCK\n
-  \t\tWelcome to the Rock-Paper-Scissors-Lizard-Spock text-based video game\n
-  You will play against the PC and you get to choose either rock, paper, scissors, lizard or spock.\n
-  The rules are simple:\n
-  \ta.\tThere are 5 options(1 to 5).\n
-  \tb.\tYou can only pick one option during a match.\n
-  \tc.\tWhen prompted, you will enter its number (position on the list) into the console.\n
- \t\t\t For example, if your choice is LIZARD, you will enter 4.\n
-  \t1)\tRock\t\t- Crushes Scissors and crushes Lizard\n
-  \t2)\tPaper\t\t- Covers Rock and disproves Spock\n
-  \t3)\tScissors\t\t- Cuts paper and decapitates lizard\n
-  \t4)\tLizard\t\t- Poisons Spock and eats Paper\n
-  \t5)\tSpock\t\t- Smashes Scissors and vaporizes Rock\n\n
-  Both you and the PC will pick a 'hand' and the winner will be announced\n
-  You are allowed to play as many times as possible;there will be a prompt where you enter 1 for YES and 0 for NO\n
-  \t\t\tENJOY!!\n\n\n
-  Based on Notes from SAM KASS (http://www.samkass.com/theories/RPSSL.html)
-  "
+  std::cout<< "\t\t\t\t\tROCK PAPER SCISSORS LIZARD SPOCK\n"
+           << "\t\tWelcome to the Rock-Paper-Scissors-Lizard-Spock text-based video game\n\n"
+           << "You will play against the PC and you get to choose either rock, paper, scissors, lizard or spock.\n"
+           << "The rules are simple:\n"
+           << "\ta.\tThere are 5 options(1 to 5).\n"
+           << "\tb.\tYou can only pick one option during a match.\n"
+           << "\tc.\tWhen prompted, you will enter its number (position on the list) into the console.\n"
+           << "\t  \tFor example, if your choice is LIZARD, you will enter 4.\n\n"
+           << "The options and there abilities are: \n"
+           << "\t1)\tRock\t\t- Crushes Scissors and crushes Lizard\n"
+           << "\t2)\tPaper\t\t- Covers Rock and disproves Spock\n"
+           << "\t3)\tScissors\t\t- Cuts paper and decapitates lizard\n"
+           << "\t4)\tLizard\t\t- Poisons Spock and eats Paper\n"
+           << "\t5)\tSpock\t\t- Smashes Scissors and vaporizes Rock\n\n"
+           << "Both you and the PC will pick a \'hand\' and the winner will be announced\n"
+           << "You are allowed to play as many times as possible;there will be a prompt where you enter 1 for YES and 0 for NO\n"
+           << "\t\t\tENJOY!!\n\n\n"
+           << "Based on Notes from SAM KASS (http://www.samkass.com/theories/RPSSL.html)\n\n\n\n";
 }
 
 void rpsls::plays(){
@@ -113,18 +122,22 @@ void rpsls::rock(int computer){
         pc = "Rock";
         break;
     case 2:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Paper";
         break;
     case 3:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Scissors";
         break;
     case 4:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Lizard";
         break;
     case 5:
+    	pc_wins_counter();
         outcome = "Computer wins!";
         pc = "Spock";
         break;
@@ -140,6 +153,7 @@ void rpsls::paper(int computer){
   std::string pc;
   switch(computer){
     case 1:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Rock";
         break;
@@ -148,14 +162,17 @@ void rpsls::paper(int computer){
         pc = "Paper";
         break;
     case 3:
+    	pc_wins_counter();
         outcome = "Computer wins!";
         pc = "Scissors";
         break;
     case 4:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Lizard";
         break;
     case 5:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Spock";
         break;
@@ -171,10 +188,12 @@ void rpsls::scissors(int computer){
   std::string pc;
   switch(computer){
     case 1:
+    	pc_wins_counter();
         outcome = "Computer Wins";
         pc = "Rock";
         break;
     case 2:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Paper";
         break;
@@ -183,10 +202,12 @@ void rpsls::scissors(int computer){
         pc = "Scissors";
         break;
     case 4:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Lizard";
         break;
     case 5:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Spock";
         break;
@@ -202,14 +223,17 @@ void rpsls::lizard(int computer){
   std::string pc;
   switch(computer){
     case 1:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Rock";
         break;
     case 2:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Paper";
         break;
     case 3:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Scissors";
         break;
@@ -218,6 +242,7 @@ void rpsls::lizard(int computer){
         pc = "Lizard";
         break;
     case 5:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Spock";
         break;
@@ -233,18 +258,22 @@ void rpsls::spock(int computer){
   std::string pc;
   switch(computer){
     case 1:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Rock";
         break;
     case 2:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Paper";
         break;
     case 3:
+    	player_wins_counter();
         outcome = "You have won, congratulations!";
         pc = "Scissors";
         break;
     case 4:
+    	pc_wins_counter();
         outcome = "Computer wins";
         pc = "Lizard";
         break;
@@ -260,27 +289,27 @@ void rpsls::spock(int computer){
 }//When the user is spock
 
 void rpsls::overall_score(){
-  int plays = rock_paper_scissors_lizard_spock.get_plays();
-  int player = rock_paper_scissors_lizard_spock.get_player_wins();
-  int pc = rock_paper_scissors_lizard_spock.get_pc_wins();
+  int plays = get_plays();
+  int player = get_player_wins();
+  int pc = get_pc_wins();
   std::string result = " ";
   if(player>pc){
-    std::cout<< "Out of the "<<plays<< "matches played:\n
-                 \tYou won "<<player<<" matches\n
-                 \tPC won "<<pc<<" matches\n
-                 You are the overall WINNER of all the plays.\n
-                 \t\t\tCONGRATULATIONS!"<<std::endl;
+    std::cout<< "Out of the "<<plays<< "matches played:\n"
+	         << "\tYou won "<<player<<" matches\n"
+	         << "\tPC won "<<pc<<" matches\n"
+			 << "You are the overall WINNER of all the plays, CONGRATULATIONS!"
+			 <<std::endl;
   }else if(player == pc){
-    std::cout<< "Out of the "<<plays<< "matches played:\n
-                 \tYou won "<<player<<" matches\n
-                 \tPC won "<<pc<<" matches\n
-                 It was a TIE!.\n
-                 \t\t\tBETTER LUCK NEXT TIME!"<<std::endl;
+    std::cout<< "Out of the "<<plays<< "matches played:\n"
+	         << "\tYou won "<<player<<" matches\n"
+	         << "\tPC won "<<pc<<" matches\n"
+			 << "It was a TIE, BETTER LUCK NEXT TIME!"
+			 <<std::endl;
   }else{
-    std::cout<< "Out of the "<<plays<< "matches played:\n
-                 \tYou won "<<player<<" matches\n
-                 \tPC won "<<pc<<" matches\n
-                 You are the overall LOOSER of all the matches.\n
-                 \t\t\tBETTER LUCK NEXT TIME!"<<std::endl;
+    std::cout<< "Out of the "<<plays<< "matches played:\n"
+	         << "\tYou won "<<player<<" matches\n"
+	         << "\tPC won "<<pc<<" matches\n"
+			 << "You are the overall LOOSER of all the plays, BETTER LUCK NEXT TIME!"
+			 <<std::endl;
   }
 }

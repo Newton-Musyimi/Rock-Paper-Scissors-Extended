@@ -1,14 +1,15 @@
 class rpsls{
   private:
-    int game_plays = 0;
-    int player_wins = 0;
-    int pc_wins = 0;
+    int game_plays;
+    int player_wins;
+    int pc_wins;
   public:
     rpsls();
+    ~rpsls();
     void game_loop();
     void game_instructions();
     void plays();
-    int get_plays()
+    int get_plays();
     void player_wins_counter();
     int get_player_wins();
     void pc_wins_counter();
@@ -19,4 +20,4 @@ class rpsls{
     void lizard(int computer);
     void spock(int computer);
     void overall_score();
-}
+};
