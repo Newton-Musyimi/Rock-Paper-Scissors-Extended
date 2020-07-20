@@ -9,7 +9,5 @@ For more, check out the README file on
 int main(){
   srand(time(NULL));
   rpsls rock_paper_scissors_lizard_spock;
-  rock_paper_scissors_lizard_spock.game_instructions();
-  rock_paper_scissors_lizard_spock.game_loop();
-  rock_paper_scissors_lizard_spock.overall_score();
+  rock_paper_scissors_lizard_spock.start();
 }
