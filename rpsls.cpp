@@ -104,8 +104,8 @@ void rpsls::game_instructions(){
            << "Both you and the PC will pick a \'hand\' and the winner will be\n"
 		   << "    announced\n"
            << "You are allowed to play as many times as you want. An overall\n"
-		   << "    score of the game will be given at the end\n\n"         
-       <<"            Created By: Newton Musyimi\n"  
+		   << "    score of the game will be given at the end\n\n"
+		   << "                     Created By: Newton Musyimi\n"  
 		   <<"------------------------------------------------------------------\n"
 		   << "                              ENJOY!"
 		   <<"\n------------------------------------------------------------------\n\n\n\n\n\n";

@@ -5,3 +5,5 @@ For the third version of the game, I switched up gears a bit and split it into 3
 3. [The logic file](https://github.com/Newton-Musyimi/Learning-C-and-CPP/blob/master/Rock%20Paper%20Scissors%20Extended/rpsls.cpp) Where the game logic is coded. Also where the class member methods declared in the header file are defined. (**351 lines of code**)
 
 >390 total lines of code
+
+To compile, run `g++ rpslsGAME.cpp rpsls.cpp`
